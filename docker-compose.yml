@@ -1,0 +1,25 @@
+version: '2'
+
+
+services:
+  app:
+    build: app    
+    ports:
+      - "9000:80"
+    volumes:
+     - ./app:/app    
+    links:
+     - php
+ 
+
+  php:
+    image: php:7-fpm
+    volumes:
+     - ./app:/app  
+
+
+  push-server:
+    build: pushserver   
+    ports:
+     - "9080:9080"
+
